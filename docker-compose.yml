@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: fspnetwork/gallerix:latest
+    hostname: nginx
+    dns: 8.8.8.8
+    environment:
+      - TZ=Asia/Shanghai
+      - ENABLE_CRONTAB=true
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 8443
+        mode: host
+    volumes:
+      - /var/log/nginx:/var/log/nginx:rw
+      - /etc/ssl/xray/ssl:/etc/nginx/ssl:rw
